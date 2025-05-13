@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Інформація про прилади</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #121212;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: start;
+      min-height: 100vh;
+      padding-top: 60px;
+    }
+
+    h1 {
+      color: #ff2d2d;
+      text-shadow: 0 0 10px #ff2d2d;
+      font-size: 2.5em;
+      margin-bottom: 30px;
+    }
+
+    select {
+      background-color: #1e1e1e;
+      color: #fff;
+      border: 2px solid #ff2d2d;
+      padding: 12px 20px;
+      font-size: 16px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px rgba(255, 45, 45, 0.4);
+    }
+
+    select:hover {
+      box-shadow: 0 0 20px rgba(255, 45, 45, 0.6);
+    }
+
+    .info {
+      margin-top: 30px;
+      background-color: #1e1e1e;
+      border-left: 5px solid #ff2d2d;
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 600px;
+      font-size: 18px;
+      line-height: 1.6;
+      box-shadow: 0 0 20px rgba(255, 45, 45, 0.3);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .info.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    option {
+      background-color: #121212;
+    }
+  </style>
+</head>
+<body>
+  <h1>Оберіть прилад</h1>
+
+  <select id="deviceSelect" onchange="showInfo()">
+    <option value="">-- Виберіть прилад --</option>
+    <option value="blinder">Бліндера</option>
+    <option value="cobu">Cobu</option>
+    <option value="parik">Паріки</option>
+    <option value="strobe">Строби</option>
+    <option value="ledbar">Ледбари</option>
+    <option value="wash">Вошки</option>
+    <option value="forzoom">Форзуми</option>
+    <option value="beam">Бім 400 і К10</option>
+    <option value="hazer">Хейзера</option>
+    <option value="spark">Спарки</option>
+  </select>
+
+  <div class="info" id="deviceInfo">Оберіть прилад, щоб побачити інформацію.</div>
+
+  <script>
+    const data = {
+      blinder: "Бліндера — 4 канали, режим D, 200 Вт.",
+      cobu: "Cobu — білі, білі теплі, холодні білі, 2 канали, режим D. Кольорові — 8 каналів, режим А.",
+      parik: "Паріки — режим А, 8 каналів. Паріки 200 Вт.",
+      strobe: "Строби нові — 14 каналів або 42.",
+      ledbar: "Нові ледбари — 157 каналів, 200 Вт. Нові рухомі ледбари додлайн — 500 Вт.",
+      wash: "Вошки — 12 каналів, 350 Вт.",
+      forzoom: "Форзуми нові — 1 канал, старі — 2 канали, 200 Вт.",
+      beam: "Бім 400 і К10 — 400 Вт. Строби — 1200 кВт.",
+      hazer: "Хейзера — 1,5 кВт.",
+      spark: "Спарки — 300 Вт."
+    };
+
+    function showInfo() {
+      const select = document.getElementById("deviceSelect");
+      const infoDiv = document.getElementById("deviceInfo");
+      const value = select.value;
+
+      if (value) {
+        infoDiv.textContent = data[value];
+        infoDiv.classList.add("visible");
+      } else {
+        infoDiv.textContent = "Оберіть прилад, щоб побачити інформацію.";
+        infoDiv.classList.remove("visible");
+      }
+    }
+  </script>
+</body>
+</html>
